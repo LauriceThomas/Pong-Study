@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public Rigidbody2D ballRb2D;
+    private Rigidbody2D ballRb2D;
+    [SerializeField]
+    private Vector3 initialVelocity;
     public float speed;
     // Start is called before the first frame update
     void Start()
     {
         ballRb2D = GetComponent<Rigidbody2D>();
-        ballRb2D.AddForce(new Vector2(-8, 0), ForceMode2D.Impulse);
+        ballRb2D.velocity = initialVelocity * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Destroy(gameObject);
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 }
